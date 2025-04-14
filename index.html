@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VisionCut Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <span class="logo">VisionCut Studio</span>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="background"></div>
+  
+  <div class="gradient"></div>
+  <div class="gradient"></div>
+  <div class="gradient"></div>
+  <div class="gradient"></div>
+  <div class="gradient"></div>
+  <div class="gradient"></div>
+  <div class="gradient"></div>
+  
+  <div class="content-container">
+    <div class="about-section">
+      <img src="logo.jpg" alt="Company Logo" id="aboutImage" />
+      <div class="about-text" id="aboutText">
+        Welcome to VisionCut Studio – Your Premier Video Editing Partner!
+        <br><br>
+        At VisionCut Studio, we specialize in professional video editing that transforms your raw footage into captivating cinematic stories. Whether you need wedding video editing, corporate promo videos, engaging vlogs, or short film editing, our expert editors craft high-quality, emotion-driven visuals that leave a lasting impact.
+        <br><br>
+        Why Choose VisionCut Studio?<br>
+        ✔ Expert Video Editors – Passionate about storytelling & visual excellence <br>
+        ✔ Cinematic Video Editing – Elevate your content with Hollywood-style effects <br>
+        ✔ Fast Turnaround & Affordable Pricing – High-end edits without the hassle <br>
+        ✔ 4K & HD Quality – Crisp, polished videos optimized for YouTube, Instagram, TikTok & more <br>
+        ✔ Custom Motion Graphics & Color Grading – Stand out with professional post-production <br>
+        <br>
+        We Bring Your Vision to Life! <br>
+        From brand videos that boost conversions to heartfelt wedding films, we blend cutting-edge technology with creative storytelling to deliver videos that connect, engage, and inspire.
+        <br><br>
+        🎬 Ready to Elevate Your Content? Get a Free Quote Today!
+      </div>
+    </div>
+    
+    <div class="reels-section">
+      <div class="arrow left" onclick="scrollReels(-1)">&#10094;</div>
+      <div class="reels-slider" id="reelsSlider">
+        <div class="reel-item"><video src="Assets/Videos/vid 1.mp4" autoplay muted loop></video></div>
+        <div class="reel-item"><video src="Assets/Videos/vid 2.mp4" autoplay muted loop></video></div>
+        <div class="reel-item"><video src="Assets/Videos/vid 3.mp4" autoplay muted loop></video></div>
+        <div class="reel-item"><video src="Assets/Videos/vid 4.mp4" autoplay muted loop></video></div>
+      </div>
+      <div class="arrow right" onclick="scrollReels(1)">&#10095;</div>
+    </div>
+  </div>
+  <!-- Founder Section -->
+  <section class="founder-section">
+    <div class="founder-content">
+      <img src="Assets/images/self image.jpg" alt="Founder Image" class="founder-image" />
+      <div class="founder-text">
+        <h2>Meet the Founder</h2>
+        <p>
+          Hello! I'm <strong>Kushal Kumar</strong>, the creative mind behind VisionCut Studio. With a deep passion for storytelling and years of experience in cinematic video editing, I set out to build a space where visuals speak louder than words.
+          <b r><br>
+          My mission is to help individuals and brands turn ideas into powerful visual experiences that truly connect with their audience.
+          <br><br>
+          Whether it's crafting a compelling reel, polishing a corporate video, or capturing the magic of your wedding day – I make sure every frame counts.
+          <br><br>
+          🎬 Let's bring your vision to life.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="software-section">
+    <h2 class="software-title">Softwares We Use</h2>
+    <div class="software-grid">
+      <div class="software-card">
+        <img src="Assets/images/After effects.png" alt="After Effects Logo">
+        <h3>After Effects</h3>
+        <p>Used for motion graphics, visual effects, and advanced animations.</p>
+      </div>
+      <div class="software-card">
+        <img src="Assets/images/premier pro.png" alt="Premiere Pro Logo">
+        <h3>Premiere Pro</h3>
+        <p>Primary video editing tool for timeline editing and post-production.</p>
+      </div>
+      <div class="software-card">
+        <img src="Assets/images/davinci resolve.png" alt="DaVinci Resolve Logo">
+        <h3>DaVinci Resolve</h3>
+        <p>Professional color grading, audio mixing, and video editing suite.</p>
+      </div>
+      <div class="software-card">
+        <img src="Assets/images/photoshop.png" alt="Photoshop Logo">
+        <h3>Photoshop</h3>
+        <p>Used for creating thumbnails, overlays, and graphic assets.</p>
+      </div>
+      <div class="software-card">
+        <img src="Assets/images/Capcut.png" alt="CapCut Logo">
+        <h3>CapCut</h3>
+        <p>Quick and mobile-friendly editing for short-form social content.</p>
+      </div>
+    </div>
+  </section>
+  
+  
+  <script>
+    const aboutText = document.getElementById('aboutText');
+    const aboutImage = document.getElementById('aboutImage');
+  
+    document.addEventListener('mousemove', (e) => {
+      const { clientX: x, clientY: y } = e;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const moveX = (x - centerX) * 0.02;
+      const moveY = (y - centerY) * 0.02;
+  
+      aboutText.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      aboutImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+    
+    // Reels functionality
+    
+    
+    
+    function formatNumber(num) {
+      if (num >= 1000000) return (num / 1000000).toFixed(1) + 'm';
+      if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+      return num;
+    }
+    
+    function setupIntersectionObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const videoId = entry.target.id.split('-')[1];
+          const video = document.getElementById(`video-${videoId}`);
+          const progress = document.getElementById(`progress-${videoId}`);
+          
+          if (entry.isIntersecting) {
+            video.play();
+            video.addEventListener('timeupdate', () => updateProgressBar(video, progress));
+            currentReelIndex = Array.from(videos).indexOf(video);
+          } else {
+            video.pause();
+            video.removeEventListener('timeupdate', () => updateProgressBar(video, progress));
+            progress.style.width = '0%';
+          }
+        });
+      }, { threshold: 0.8 });
+      
+      videos.forEach(video => observer.observe(video));
+    }
+    
+    function updateProgressBar(video, progressBar) {
+      const percent = (video.currentTime / video.duration) * 100;
+      progressBar.style.width = `${percent}%`;
+    }
+    
+    function setupScrollListener() {
+      let isScrolling = false;
+      
+      reelsContainer.addEventListener('scroll', () => {
+        if (!isScrolling) {
+          isScrolling = true;
+          const containerHeight = reelsContainer.clientHeight;
+          const scrollPosition = reelsContainer.scrollTop;
+          const newIndex = Math.round(scrollPosition / containerHeight);
+          
+          if (newIndex !== currentReelIndex) {
+            videos[currentReelIndex].pause();
+            document.getElementById(`progress-${videos[currentReelIndex].id.split('-')[1]}`).style.width = '0%';
+            currentReelIndex = newIndex;
+            videos[currentReelIndex].currentTime = 0;
+            videos[currentReelIndex].play();
+          }
+          
+          setTimeout(() => { isScrolling = false; }, 100);
+        }
+      });
+    }
+    const slider = document.getElementById('reelsSlider');
+  let currentIndex = 0;
+  const totalReels = slider.children.length;
+
+  function scrollReels(direction) {
+    currentIndex = (currentIndex + direction + totalReels) % totalReels;
+    slider.scrollTo({
+      left: slider.offsetWidth * currentIndex,
+      behavior: 'smooth'
+    });
+  }
+
+  setInterval(() => {
+    scrollReels(1);
+  }, 3000);
+    document.addEventListener('DOMContentLoaded', createReels);
+  </script>
+</body>
+</html>
