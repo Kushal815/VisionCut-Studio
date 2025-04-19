@@ -1,10 +1,9 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>VisionCut Studio</title>
-    <!-- <link rel="stylesheet" href="style.css" /> -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@600&display=swap');
     
@@ -120,15 +119,28 @@
         
         .gradient {
         position: absolute;
-        width: 15vw;
-        height: 15vw;
-        background: radial-gradient(circle, #000000 0%, #464442 40%, rgba(146, 142, 116, 0.74) 100%);
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle, #292929 0%, #332f2f 40%, rgba(59, 43, 43, 0.699) 100%);
         filter: blur(40px);
         border-radius: 50%;
         opacity: 0.8;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
+        pointer-events: none;
+        
+        }
+        .gradient-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1; /* Ensure it's behind the content */
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #292929 0%, #332f2f 40%, rgba(59, 43, 43, 0.699) 100%);
+            filter: blur(40px);
+            border-radius: 50%;
+            opacity: 0.8;
         }
 
         .gradient:nth-child(1)  { left: 12%; top: 64%; animation: moveGradient1 5.3s infinite alternate ease-in-out; }
@@ -165,11 +177,8 @@
         @keyframes moveGradient14 { 0% { transform: translate(0, 0); } 100% { transform: translate(16vw, -28vh) rotate(360deg); } }
         @keyframes moveGradient15 { 0% { transform: translate(0, 0); } 100% { transform: translate(-30vw, 25vh) rotate(270deg); } }
         @keyframes moveGradient16 { 0% { transform: translate(0, 0); } 100% { transform: translate(14vw, -15vh) rotate(195deg); } }
-        @keyframes moveGradient17 { 0% { transform: translate(0, 0); } 100% { transform: translate(-28vw, 5vh) rotate(360deg); } }
+        @keyframes moveGradient17 { 0% { transform: translate(0, 0); } 100% { transform: translate(-28vw, 5vh) rotate(360deg); } } 
 
-        .obj{
-            display: ;
-        }
         
         .content-container {
         display: flex;
@@ -182,34 +191,37 @@
         }
         
         .about-section {
-        width: 50%;
-        padding: 40px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(12px) saturate(160%);
-        -webkit-backdrop-filter: blur(12px) saturate(160%);
-        color: rgb(19, 18, 18);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        height: 950px; /* Set a max or fixed height */
-        overflow-y: auto;
-        overflow-x: hidden;
-
-        }.about-section::-webkit-scrollbar {
+            width: 50%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
+            color: rgb(19, 18, 18);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            overflow: hidden;
+             /* Set a max or fixed height */
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-bottom: 50px; 
+         }
+        .about-section::-webkit-scrollbar {
             width: 8px;
         }
      
         .about-section img {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid rgb(20, 20, 20);
-        transition: transform 0.1s ease-out;
+            width: 200px; /* Allow the width to adjust automatically */
+            height: 200px; /* Maintain a fixed height */
+             /* Ensure the image doesn't overflow the container */
+            border-radius: 50%;
+            object-fit: cover; /* Ensure the image fits within the circle */
+            border: 3px solid rgb(20, 20, 20);
+            transition: transform 0.1s ease-out;
         }
         
         .about-text {
@@ -232,7 +244,7 @@
         
         .reels-section {
         width: 35%;
-        height: 120vh;
+        height: 100vh;
         overflow: hidden;
         position: relative;
         border-radius: 10PX;
@@ -243,15 +255,13 @@
         overflow: hidden;
         display: flex;
         flex-wrap: nowrap;
-        flex-direction: row;
-        height: 100%;
+        
         overflow-x: auto;
         scroll-behavior: smooth;
         scroll-snap-type: x mandatory;
         }
         .reels-slider:hover {
-        
-        
+
         color: rgb(43, 43, 43);
         }
         /* reels section */
@@ -297,22 +307,22 @@
         right: 5px;
         }
         .founder-section {
-        margin-top: 30px;
-        background-color: #131313;
-        color: #f1f1f1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 60px 20px;
-        box-sizing: border-box;
-        position: relative;
+            margin-top: 50px; /* Add spacing above the section */
+            background-color: #131313;
+            color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            position: relative;
         }
         
         .founder-content {
         display: flex;
         flex-direction: row;
-        gap: 50px;
-        max-width: 1100px;
+        
+        
         width: 100%;
         align-items: center;
         justify-content: center;
@@ -321,6 +331,7 @@
         .founder-image {
         width: 220px;
         height: 220px;
+        margin: 0 50px 0 0;
         border-radius: 50%;
         object-fit: cover;
         border: 4px solid #f1f1f1;
@@ -331,7 +342,7 @@
         max-width: 600px;
         }
         .software-section {
-        background: #fff;
+        
         padding: 60px 20px;
         text-align: center;
         }
@@ -383,31 +394,91 @@
         }
         .drive-section {
             margin-top: 30px;
-        background-color: #131313;
-        color: #f1f1f1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 60px 20px;
-        box-sizing: border-box;
-        position: relative;
+            background-color: #131212;
+            color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            position: relative;
         }
-        .d_img {
+        .drive-section .drive_logo {
+            margin-right: 20px;
+        }
+        .drive-section .about-drive {
+            font-size: 20px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
+            max-width: 600px;
+        }
+
+        
+        
+        .drive-section a:hover {
+            text-decoration: underline;
+        }
+        .drive-section img {
             width: 100px;
             height: 100px;
             margin-right: 20px;
+            transition: transform 0.2s ease;
+            will-change: transform;
         }
-        .about-drive {
-            display: flex;
-           flex-direction: row;
-           gap: 10px;
-            max-width: 500px;
-            width: 100%;
+        .drive-section img:hover {
+            transform: scale(1.1);
+        }
+        
+        
+
+
+        .contact{
+        
+            padding: 50px;
+            background-color: #131313;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
             align-items: center;
-            justify-content: center;
         }
+
+        .contact-section {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .contact_logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            padding: 50px;
+            
+        }
+
+        .f_img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .about-contact p {
+            display: block; /* Change from flex to block */
+            font-size: 16px;
+            color: #fff;
+            margin: 10px 0;x
+        }
+
         
-        
+
+        .contact-tagline {
+            font-size: 20px;
+            color: #fff;
+            font-style: bold;
+            margin-top: 20px;
+        }
+
     </style>
     </head>
     <body>
@@ -459,15 +530,15 @@
             </div>
             </div>
             
-            <div class="reels-section">
-            <div class="arrow left" onclick="scrollReels(-1)">&#10094;</div>
-            <div class="reels-slider" id="reelsSlider">
-                <div class="reel-item"><video src="Assets/Videos/vid 1.mp4" autoplay muted loop></video></div>
-                <div class="reel-item"><video src="Assets/Videos/vid 2.mp4" autoplay muted loop></video></div>
-                <div class="reel-item"><video src="Assets/Videos/vid 3.mp4" autoplay muted loop></video></div>
-                <div class="reel-item"><video src="Assets/Videos/vid 4.mp4" autoplay muted loop></video></div>
-            </div>
-            <div class="arrow right" onclick="scrollReels(1)">&#10095;</div>
+                <div class="reels-section">
+                <div class="arrow left" onclick="scrollReels(-1)">&#10094;</div>
+                <div class="reels-slider" id="reelsSlider">
+                    <div class="reel-item"><video src="Assets/Videos/vid 1.mp4" autoplay muted loop></video></div>
+                    <div class="reel-item"><video src="Assets/Videos/vid 2.mp4" autoplay muted loop></video></div>
+                    <div class="reel-item"><video src="Assets/Videos/vid 3.mp4" autoplay muted loop></video></div>
+                    <div class="reel-item"><video src="Assets/Videos/vid 4.mp4" autoplay muted loop></video></div>
+                </div>
+                <div class="arrow right" onclick="scrollReels(1)">&#10095;</div>
             </div>
         </div>
         <!-- Founder Section -->
@@ -521,14 +592,119 @@
     </section>
     <div class="drive-section">
         <div class="drive_logo">
-            <img class="d_img" src="Assets/images/google-drive.png" alt="Drive Logo" style="width: 50px; height: 50px;">
+            <a href="https://drive.google.com/drive/folders/1pvAYsqoDe1Dfl_pNHPiSbHPeiTIaHRyn?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <img class="d_img" src="Assets/images/google-drive.png" alt="Drive Logo">
+            </a>
         </div>
-        <div class="about-drive">Here is the Coplete portfolio link to check, please vesit</div>
+        <div class="about-drive">
+            <div>
+                <p>Check out the complete portfolio hosted on Google Drive.</p>
+                <p>
+                    <a href="https://drive.google.com/drive/folders/1pvAYsqoDe1Dfl_pNHPiSbHPeiTIaHRyn?usp=sharing" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       style="color: rgb(60, 201, 60); text-decoration: underline;">
+                       Click here to visit the Drive folder
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="contact">
+        <div class="contact-section">
+            <div class="contact_logo">
+                <a href="https://docs.google.com/forms/d/1Bc9jqTrYc3oDTzGuZFzpZ7GDuQHuC_OKG0LmZVnulF8/edit" target="_blank" rel="noopener noreferrer">
+                    <img class="f_img" src="Assets/images/form.png" alt="Contact Logo">
+                </a>
+            </div>
+            <div class="about-contact">
+                <div>
+                    <p>Get in touch with us for any inquiries or collaboration opportunities.</p>
+                    <p>
+                        <a>
+                            Email Us:<a href="mailto:kushal8152929@gmail.com" style="color: rgb(240, 240, 240);"> kushal8152929@gmail.com</a>
+                        </a>
+                    </p>
+                    <p>
+                        <a>
+                            Call Us: <a href="tel:+918951575184" style="color: rgb(240, 240, 240);">+91 8951575184</a>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="contact-form.html" style="color: rgb(125, 125, 248); text-decoration: underline;">
+                            Fill out our contact form for more details.
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        <p class="contact-tagline">"Let’s make something amazing together!"</p>
     </div>
     
+
     
-    <!-- <script src="script.js"></script> -->
     <script>
+        const blobCount = 17;
+    const blobs = [];
+
+    for (let i = 0; i < blobCount; i++) {
+      const blob = document.createElement('div');
+      blob.classList.add('gradient');
+      document.body.appendChild(blob);
+
+      // Random initial position and velocity
+      blobs.push({
+        el: blob,
+        x: Math.random() * (window.innerWidth - 80),
+        y: Math.random() * (window.innerHeight - 80),
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2
+      });
+    }
+
+    function animate() {
+      const radius = 40;
+
+      for (let i = 0; i < blobs.length; i++) {
+        let b = blobs[i];
+
+        // Move
+        b.x += b.vx;
+        b.y += b.vy;
+
+        // Bounce off walls
+        if (b.x <= 0 || b.x >= window.innerWidth - 80) b.vx *= -1;
+        if (b.y <= 0 || b.y >= window.innerHeight - 80) b.vy *= -1;
+
+        // Collision detection with other blobs
+        for (let j = i + 1; j < blobs.length; j++) {
+          let b2 = blobs[j];
+          let dx = b2.x - b.x;
+          let dy = b2.y - b.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < radius * 2) {
+            // Basic elastic collision response
+            let angle = Math.atan2(dy, dx);
+            let targetX = b.x + Math.cos(angle) * radius * 2;
+            let targetY = b.y + Math.sin(angle) * radius * 2;
+            let ax = (targetX - b2.x) * 0.05;
+            let ay = (targetY - b2.y) * 0.05;
+            b.vx -= ax;
+            b.vy -= ay;
+            b2.vx += ax;
+            b2.vy += ay;
+          }
+        }
+
+        // Apply position
+        b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
         const aboutText = document.getElementById('aboutText');
         const aboutImage = document.getElementById('aboutImage');
     
@@ -543,9 +719,7 @@
         aboutImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
         
-        // Reels functionality
-        
-        
+
         
         function formatNumber(num) {
         if (num >= 1000000) return (num / 1000000).toFixed(1) + 'm';
@@ -617,8 +791,28 @@
     setInterval(() => {
         scrollReels(1);
     }, 3000);
-        document.addEventListener('DOMContentLoaded', createReels);
 
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const image = document.querySelector('.d_img');
+
+            image.addEventListener('mousemove', (e) => {
+                const rect = image.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * 10;
+                const rotateY = ((x - centerX) / centerX) * -10;
+
+                image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.2)`;
+            });
+
+            image.addEventListener('mouseleave', () => {
+                image.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        });
+    
             
     </script>
     </body>
