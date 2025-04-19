@@ -4,12 +4,13 @@
 font-family: 'Digital';
 src: url('https://cdnjs.cloudflare.com/ajax/libs/digital-fonts/1.0.0/digital-7-mono.ttf');
 }
-    
+
 html, body {
         height: 100%;
         margin: 0;
         padding: 0;
         overflow: auto;
+        scroll-behavior: smooth;
         background: #f3f3f3;
         position: relative;
         font-family: 'Montserrat', sans-serif;
