@@ -17,47 +17,47 @@ html, body {
         }
         
         .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        background: rgba(175, 175, 175, 0.171);
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 0 0px;
-        z-index: 1000;
-        backdrop-filter: blur(12px) saturate(160%);
-        -webkit-backdrop-filter: blur(12px) saturate(160%);
-        border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        border-radius: 0 0 20px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(175, 175, 175, 0.171);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border-radius: 0 0 20px 20px;
         }
         
         .logo {
-        font-family: 'Orbitron', sans-serif;
-        color: rgb(20, 20, 20);
-        font-size: 40px;
-        font-weight: bold;
-        letter-spacing: 1.5px;
-        margin-right: auto;
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
-        padding-left: 20px;
+            font-family: 'Orbitron', sans-serif;
+            color: rgb(20, 20, 20);
+            font-size: 2em;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            padding-left: 20px;
         }
         
         .logo::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: 0px;
-        width: 0;
-        height: 3px;
-        background: rgb(20, 20, 20);
-        transition: width 0.3s ease, left 0.3s ease;
-        border-radius: 40%;
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0px;
+            width: 0;
+            height: 3px;
+            background: rgb(20, 20, 20);
+            transition: width 0.3s ease, left 0.3s ease;
+            border-radius: 40%;
         }
         
         .logo:hover::after {
@@ -98,17 +98,15 @@ html, body {
         left: 0;
         }
         .background {
-        position: relative;
-        margin: 300px 0 0 0;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        
-        background-size: cover;
-        background-position: center;
-        filter: blur(8px);
-        z-index: -1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
         }
         
         .gradient {
@@ -175,14 +173,17 @@ html, body {
 
         
         .content-container {
-        display: flex;
-        position: absolute;
-        top: 100px;
-        left: 30px;
-        right: 30px;
-        gap: 30px;
-        overflow: auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+            top: 60px;
+            padding: 20px;
+            gap: 30px;
+            width: 100%;
+            overflow: auto;
         }
+       
         
         .about-section {
             width: 50%;
@@ -471,4 +472,77 @@ html, body {
             color: #fff;
             font-style: bold;
             margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(175, 175, 175, 0.9);
+                text-align: center;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            }
+        
+            .nav-links a {
+                margin: 10px 0;
+                display: block;
+            }
+        
+            .menu-button {
+                display: block;
+                margin-left: auto;
+            }
+        
+            .content-container {
+                flex-direction: column;
+            }
+        
+            .about-section,
+            .reels-section {
+                width: 90%;
+            }
+        
+            .founder-content {
+                flex-direction: column;
+            }
+        
+            .founder-image {
+                margin: 0;
+            }
+        
+            .founder-text {
+                max-width: 90%;
+            }
+        
+            .software-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            .software-card {
+                width: 90%;
+            }
+        
+            .drive-section {
+                flex-direction: column;
+            }
+        
+            .drive-section .drive_logo {
+                margin-right: 0;
+            }
+        
+            .drive-section .about-drive {
+                text-align: center;
+            }
+        
+            .contact {
+                max-width: 90%;
+            }
+        
+            .contact-section {
+                flex-direction: column;
+            }
         }

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VisionCut Studio</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@600&display=swap');
+    
+    @font-face {
+        font-family: 'Digital';
+        src: url('https://cdnjs.cloudflare.com/ajax/libs/digital-fonts/1.0.0/digital-7-mono.ttf');
+    }
+    
+    /* Resetting styles */
+    html, body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+        background: #f3f3f3;
+        overflow-x: hidden;
+    }
+    
+    /* Header styles */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: rgba(175, 175, 175, 0.171);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 1000;
+        backdrop-filter: blur(12px) saturate(160%);
+        -webkit-backdrop-filter: blur(12px) saturate(160%);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border-radius: 0 0 20px 20px;
+    }
+    
+    /* Logo styles */
+    .logo {
+        font-family: 'Orbitron', sans-serif;
+        color: rgb(20, 20, 20);
+        font-size: 2em;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+        margin-right: auto;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        padding-left: 20px;
+    }
+    
+    .logo::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0px;
+        width: 0;
+        height: 3px;
+        background: rgb(20, 20, 20);
+        transition: width 0.3s ease, left 0.3s ease;
+        border-radius: 40%;
+    }
+    
+    .logo:hover::after {
+        width: 100%;
+        left: 0;
+    }
+    
+    /* Navigation links styles */
+    .nav-links {
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav-links a {
+        color: rgb(20, 20, 20);
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 1em;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        width: 0;
+        height: 5px;
+        background: rgb(20, 20, 20);
+        transition: width 0.3s ease, left 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        color: #ebb04c;
+        text-shadow: 0 0 8px #FFB22C, 0 0 16px #eec680;
+        transform: scale(1.1) translateY(-3px);
+    }
+    
+    .nav-links a:hover::after {
+        width: 100%;
+        left: 0;
+    }
+    
+    /* Menu button styles */
+    .menu-button {
+        background: none;
+        border: none;
+        color: rgb(20, 20, 20);
+        font-size: 2em;
+        cursor: pointer;
+        display: none;
+    }
+    
+    /* Background styles */
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px);
+        z-index: -1;
+    }
+    
+    /* Gradient styles */
+    .gradient {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle, #292929 0%, #332f2f 40%, rgba(59, 43, 43, 0.699) 100%);
+        filter: blur(40px);
+        border-radius: 50%;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+    
+    /* Gradient animations */
+    @keyframes moveGradient1 { 0% { transform: translate(0, 0); } 100% { transform: translate(-20vw, -25vh) rotate(360deg); } }
+    @keyframes moveGradient2 { 0% { transform: translate(0, 0); } 100% { transform: translate(15vw, -30vh) rotate(270deg); } }
+    @keyframes moveGradient3 { 0% { transform: translate(0, 0); } 100% { transform: translate(-10vw, 20vh) rotate(180deg); } }
+    @keyframes moveGradient4 { 0% { transform: translate(0, 0); } 100% { transform: translate(25vw, 10vh) rotate(360deg); } }
+    @keyframes moveGradient5 { 0% { transform: translate(0, 0); } 100% { transform: translate(-15vw, -10vh) rotate(300deg); } }
+    @keyframes moveGradient6 { 0% { transform: translate(0, 0); } 100% { transform: translate(10vw, 30vh) rotate(225deg); } }
+    @keyframes moveGradient7 { 0% { transform: translate(0, 0); } 100% { transform: translate(-25vw, 15vh) rotate(315deg); } }
+    @keyframes moveGradient8 { 0% { transform: translate(0, 0); } 100% { transform: translate(18vw, -18vh) rotate(210deg); } }
+    @keyframes moveGradient9 { 0% { transform: translate(0, 0); } 100% { transform: translate(-12vw, 28vh) rotate(330deg); } }
+    @keyframes moveGradient10 { 0% { transform: translate(0, 0); } 100% { transform: translate(22vw, 12vh) rotate(180deg); } }
+    @keyframes moveGradient11 { 0% { transform: translate(0, 0); } 100% { transform: translate(-18vw, -22vh) rotate(360deg); } }
+    @keyframes moveGradient12 { 0% { transform: translate(0, 0); } 100% { transform: translate(30vw, -10vh) rotate(240deg); } }
+    @keyframes moveGradient13 { 0% { transform: translate(0, 0); } 100% { transform: translate(-22vw, 10vh) rotate(300deg); } }
+    @keyframes moveGradient14 { 0% { transform: translate(0, 0); } 100% { transform: translate(16vw, -28vh) rotate(360deg); } }
+    @keyframes moveGradient15 { 0% { transform: translate(0, 0); } 100% { transform: translate(-30vw, 25vh) rotate(270deg); } }
+    @keyframes moveGradient16 { 0% { transform: translate(0, 0); } 100% { transform: translate(14vw, -15vh) rotate(195deg); } }
+    @keyframes moveGradient17 { 0% { transform: translate(0, 0); } 100% { transform: translate(-28vw, 5vh) rotate(360deg); } }
+    
+    .gradient:nth-child(1)  { left: 12%; top: 64%; animation: moveGradient1 5.3s infinite alternate ease-in-out; }
+    .gradient:nth-child(2)  { left: 78%; top: 28%; animation: moveGradient2 4.1s infinite alternate ease-in-out; }
+    .gradient:nth-child(3)  { left: 33%; top: 18%; animation: moveGradient3 6.7s infinite alternate ease-in-out; }
+    .gradient:nth-child(4)  { left: 59%; top: 72%; animation: moveGradient4 5.9s infinite alternate ease-in-out; }
+    .gradient:nth-child(5)  { left: 21%; top: 48%; animation: moveGradient5 4.4s infinite alternate ease-in-out; }
+    .gradient:nth-child(6)  { left: 86%; top: 14%; animation: moveGradient6 6.5s infinite alternate ease-in-out; }
+    .gradient:nth-child(7)  { left: 47%; top: 33%; animation: moveGradient7 5.6s infinite alternate ease-in-out; }
+    .gradient:nth-child(8)  { left: 68%; top: 81%; animation: moveGradient8 4.2s infinite alternate ease-in-out; }
+    .gradient:nth-child(9)  { left: 10%; top: 26%; animation: moveGradient9 6.3s infinite alternate ease-in-out; }
+    .gradient:nth-child(10) { left: 38%; top: 55%; animation: moveGradient10 5.2s infinite alternate ease-in-out; }
+    .gradient:nth-child(11) { left: 91%; top: 40%; animation: moveGradient11 6.9s infinite alternate ease-in-out; }
+    .gradient:nth-child(12) { left: 26%; top: 70%; animation: moveGradient12 5.1s infinite alternate ease-in-out; }
+    .gradient:nth-child(13) { left: 64%; top: 16%; animation: moveGradient13 4.8s infinite alternate ease-in-out; }
+    .gradient:nth-child(14) { left: 53%; top: 89%; animation: moveGradient14 6.2s infinite alternate ease-in-out; }
+    .gradient:nth-child(15) { left: 17%; top: 37%; animation: moveGradient15 5.7s infinite alternate ease-in-out; }
+    .gradient:nth-child(16) { left: 72%; top: 61%; animation: moveGradient16 4.3s infinite alternate ease-in-out; }
+    .gradient:nth-child(17) { left: 49%; top: 12%; animation: moveGradient17 6.6s infinite alternate ease-in-out; }
+    
+    /* Content container styles */
+    .content-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        top: 60px;
+        padding: 20px;
+        gap: 30px;
+        width: 100%;
+        overflow: auto;
+    }
+    
+    /* About section styles */
+    .about-section {
+        width: 80%;
+        padding: 20px;
+        display: flex;
+        background: rgba(133, 130, 130, 0.15);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(12px) saturate(160%);
+        -webkit-backdrop-filter: blur(12px) saturate(160%);
+        color: rgb(19, 18, 18);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-bottom: 50px;
+    }
+    
+    .about-section::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .about-section img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgb(20, 20, 20);
+        transition: transform 0.1s ease-out;
+    }
+    
+    .about-text {
+        font-size: 1em;
+        line-height: 1.8;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        transition: transform 0.1s ease-out;
+    }
+    
+    /* Reels section styles */
+    .reels-section {
+        width: 80%;
+        height: auto;
+        overflow: hidden;
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 20px 20px 60px rgba(8, 8, 8, 0.31);
+    }
+    
+    .reels-slider {
+        overflow: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .reel-item {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        position: relative;
+    }
+    
+    .reel-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        align-items: center;
+    }
+    
+    /* Arrow styles */
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3em;
+        color: white;
+        z-index: 5;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        user-select: none;
+        width: 50px;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .arrow:hover {
+        color: rgb(255, 234, 0);
+    }
+    
+    .arrow.left {
+        left: 5px;
+    }
+    
+    .arrow.right {
+        right: 5px;
+    }
+    
+    /* Founder section styles */
+    .founder-section {
+        margin-top: 50px;
+        background-color: #131313;
+        color: #f1f1f1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        box-sizing: border-box;
+        position: relative;
+        text-align: center;
+    }
+    
+    .founder-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .founder-image {
+        width: 220px;
+        height: 220px;
+        margin: 0;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #f1f1f1;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    
+    .founder-text {
+        max-width: 80%;
+    }
+    
+    /* Software section styles */
+    .software-section {
+        padding: 60px 20px;
+        text-align: center;
+    }
+    
+    .software-title {
+        font-size: 2em;
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: #131313;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .software-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+    
+    .software-card {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        border-radius: 16px;
+        width: 220px;
+        padding: 20px;
+        transition: transform 0.3s ease;
+    }
+    
+    .software-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .software-card img {
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .software-card h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #222;
+    }
+    
+    .software-card p {
+        font-size: 0.9em;
+        color: #444;
+    }
+    
+    /* Drive section styles */
+    .drive-section {
+        margin-top: 30px;
+        background-color: #131212;
+        color: #f1f1f1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        box-sizing: border-box;
+        position: relative;
+        text-align: center;
+    }
+    
+    .drive-section .drive_logo {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .drive-section .about-drive {
+        font-size: 1em;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        max-width: 80%;
+    }
+    
+    .drive-section a:hover {
+        text-decoration: underline;
+    }
+    
+    .drive-section img {
+        width: 100px;
+        height: 100px;
+        transition: transform 0.2s ease;
+        will-change: transform;
+    }
+    
+    .drive-section img:hover {
+        transform: scale(1.1);
+    }
+    
+    /* Contact section styles */
+    .contact {
+        padding: 50px;
+        background-color: #131313;
+        border-radius: 15px;
+        max-width: 80%;
+        margin: 20px auto;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .contact-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .contact_logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+        padding: 50px;
+    }
+    
+    .f_img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .about-contact p {
+        font-size: 0.9em;
+        color: #fff;
+        margin: 10px 0;
+    }
+    
+    .contact-tagline {
+        font-size: 1.1em;
+        color: #fff;
+        font-style: bold;
+        margin-top: 20px;
+    }
+    
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(175, 175, 175, 0.9);
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+    
+        .nav-links a {
+            margin: 10px 0;
+            display: block;
+        }
+    
+        .menu-button {
+            display: block;
+            margin-left: auto;
+        }
+    
+        .content-container {
+            flex-direction: column;
+        }
+    
+        .about-section,
+        .reels-section {
+            width: 90%;
+        }
+    
+        .founder-content {
+            flex-direction: column;
+        }
+    
+        .founder-image {
+            margin: 0;
+        }
+    
+        .founder-text {
+            max-width: 90%;
+        }
+    
+        .software-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .software-card {
+            width: 90%;
+        }
+    
+        .drive-section {
+            flex-direction: column;
+        }
+    
+        .drive-section .drive_logo {
+            margin-right: 0;
+        }
+    
+        .drive-section .about-drive {
+            text-align: center;
+        }
+    
+        .contact {
+            max-width: 90%;
+        }
+    
+        .contact-section {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="header">
+    <span class="logo">VisionCut Studio</span>
+    <div class="nav-links">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <button class="menu-button">&#9776;</button>
+</div>
+<div class="background"></div>
+
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+<div class="gradient"></div>
+
+<div class="obj">
+    <div class="content-container">
+        <div class="about-section">
+        <img src="logo.jpg" alt="Company Logo" id="aboutImage" />
+        <div class="about-text" id="aboutText">
+            Welcome to VisionCut Studio – Your Premier Video Editing Partner!
+            <br><br>
+            At VisionCut Studio, we specialize in professional video editing that transforms your raw footage into captivating cinematic stories. Whether you need wedding video editing, corporate promo videos, engaging vlogs, or short film editing, our expert editors craft high-quality, emotion-driven visuals that leave a lasting impact.
+            <br><br>
+            Why Choose VisionCut Studio?<br>
+            ✔ Expert Video Editors – Passionate about storytelling & visual excellence <br>
+            ✔ Cinematic Video Editing – Elevate your content with Hollywood-style effects <br>
+            ✔ Fast Turnaround & Affordable Pricing – High-end edits without the hassle <br>
+            ✔ 4K & HD Quality – Crisp, polished videos optimized for YouTube, Instagram, TikTok & more <br>
+            ✔ Custom Motion Graphics & Color Grading – Stand out with professional post-production <br>
+            <br>
+            We Bring Your Vision to Life! <br>
+            From brand videos that boost conversions to heartfelt wedding films, we blend cutting-edge technology with creative storytelling to deliver videos that connect, engage, and inspire.
+            <br><br>
+            🎬 Ready to Elevate Your Content? Get a Free Quote Today!
+        </div>
+        </div>
+        
+            <div class="reels-section">
+            <div class="arrow left" onclick="scrollReels(-1)">&#10094;</div>
+            <div class="reels-slider" id="reelsSlider">
+                <div class="reel-item"><video src="Assets/Videos/vid 1.mp4" autoplay muted loop></video></div>
+                <div class="reel-item"><video src="Assets/Videos/vid 2.mp4" autoplay muted loop></video></div>
+                <div class="reel-item"><video src="Assets/Videos/vid 3.mp4" autoplay muted loop></video></div>
+                <div class="reel-item"><video src="Assets/Videos/vid 4.mp4" autoplay muted loop></video></div>
+            </div>
+            <div class="arrow right" onclick="scrollReels(1)">&#10095;</div>
+        </div>
+    </div>
+    <!-- Founder Section -->
+    <section class="founder-section">
+        <div class="founder-content">
+        <img src="Assets/images/self image.jpg" alt="Founder Image" class="founder-image" />
+        <div class="founder-text">
+            <h2>Meet the Founder</h2>
+            <p>
+            Hello! I'm <strong>Kushal Kumar</strong>, the creative mind behind VisionCut Studio. With a deep passion for storytelling and years of experience in cinematic video editing, I set out to build a space where visuals speak louder than words.
+            <b r><br>
+            My mission is to help individuals and brands turn ideas into powerful visual experiences that truly connect with their audience.
+            <br><br>
+            Whether it's crafting a compelling reel, polishing a corporate video, or capturing the magic of your wedding day – I make sure every frame counts.
+            <br><br>
+            🎬 Let's bring your vision to life.
+            </p>
+        </div>
+        </div>
+    </section>
+</div>
+<section class="software-section">
+    <h2 class="software-title">Softwares We Use</h2>
+    <div class="software-grid">
+    <div class="software-card">
+        <img src="Assets/images/After effects.png" alt="After Effects Logo">
+        <h3>After Effects</h3>
+        <p>Used for motion graphics, visual effects, and advanced animations.</p>
+    </div>
+    <div class="software-card">
+        <img src="Assets/images/premier pro.png" alt="Premiere Pro Logo">
+        <h3>Premiere Pro</h3>
+        <p>Primary video editing tool for timeline editing and post-production.</p>
+    </div>
+    <div class="software-card">
+        <img src="Assets/images/davinci resolve.png" alt="DaVinci Resolve Logo">
+        <h3>DaVinci Resolve</h3>
+        <p>Professional color grading, audio mixing, and video editing suite.</p>
+    </div>
+    <div class="software-card">
+        <img src="Assets/images/photoshop.png" alt="Photoshop Logo">
+        <h3>Photoshop</h3>
+        <p>Used for creating thumbnails, overlays, and graphic assets.</p>
+    </div>
+    <div class="software-card">
+        <img src="Assets/images/Capcut.png" alt="CapCut Logo">
+        <h3>CapCut</h3>
+        <p>Quick and mobile-friendly editing for short-form social content.</p>
+    </div>
+    </div>
+</section>
+<div class="drive-section">
+    <div class="drive_logo">
+        <a href="https://drive.google.com/drive/folders/1pvAYsqoDe1Dfl_pNHPiSbHPeiTIaHRyn?usp=sharing" target="_blank" rel="noopener noreferrer">
+            <img class="d_img" src="Assets/images/google-drive.png" alt="Drive Logo">
+        </a>
+    </div>
+    <div class="about-drive">
+        <div>
+            <p>Check out the complete portfolio hosted on Google Drive.</p>
+            <p>
+                <a href="https://drive.google.com/drive/folders/1pvAYsqoDe1Dfl_pNHPiSbHPeiTIaHRyn?usp=sharing" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   style="color: rgb(60, 201, 60); text-decoration: underline;">
+                   Click here to visit the Drive folder
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="contact">
+    <div class="contact-section">
+        <div class="contact_logo">
+            <a href="https://docs.google.com/forms/d/1Bc9jqTrYc3oDTzGuZFzpZ7GDuQHuC_OKG0LmZVnulF8/edit" target="_blank" rel="noopener noreferrer">
+                <img class="f_img" src="Assets/images/form.png" alt="Contact Logo">
+            </a>
+        </div>
+        <div class="about-contact">
+            <div>
+                <p>Get in touch with us for any inquiries or collaboration opportunities.</p>
+                <p>
+                    <a>
+                        Email Us:<a href="mailto:kushal8152929@gmail.com" style="color: rgb(240, 240, 240);"> kushal8152929@gmail.com</a>
+                    </a>
+                </p>
+                <p>
+                    <a>
+                        Call Us: <a href="tel:+918951575184" style="color: rgb(240, 240, 240);">+91 8951575184</a>
+                    </a>
+                </p>
+                <p>
+                    <a href="contact-form.html" style="color: rgb(125, 125, 248); text-decoration: underline;">
+                        Fill out our contact form for more details.
+                    </a>
+                </p>
+            </div>
+        </div>
+        
+    </div>
+    <p class="contact-tagline">"Let’s make something amazing together!"</p>
+</div>
+
+<script>
+    const blobCount = 17;
+const blobs = [];
+
+for (let i = 0; i < blobCount; i++) {
+  const blob = document.createElement('div');
+  blob.classList.add('gradient');
+  document.body.appendChild(blob);
+
+  // Random initial position and velocity
+  blobs.push({
+    el: blob,
+    x: Math.random() * (window.innerWidth - 80),
+    y: Math.random() * (window.innerHeight - 80),
+    vx: (Math.random() - 0.5) * 2,
+    vy: (Math.random() - 0.5) * 2
+  });
+}
+
+function animate() {
+  const radius = 40;
+
+  for (let i = 0; i < blobs.length; i++) {
+    let b = blobs[i];
+
+    // Move
+    b.x += b.vx;
+    b.y += b.vy;
+
+    // Bounce off walls
+    if (b.x <= 0 || b.x >= window.innerWidth - 80) b.vx *= -1;
+    if (b.y <= 0 || b.y >= window.innerHeight - 80) b.vy *= -1;
+
+    // Collision detection with other blobs
+    for (let j = i + 1; j < blobs.length; j++) {
+      let b2 = blobs[j];
+      let dx = b2.x - b.x;
+      let dy = b2.y - b.y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < radius * 2) {
+        // Basic elastic collision response
+        let angle = Math.atan2(dy, dx);
+        let targetX = b.x + Math.cos(angle) * radius * 2;
+        let targetY = b.y + Math.sin(angle) * radius * 2;
+        let ax = (targetX - b2.x) * 0.05;
+        let ay = (targetY - b2.y) * 0.05;
+        b.vx -= ax;
+        b.vy -= ay;
+        b2.vx += ax;
+        b2.vy += ay;
+      }
+    }
+
+    // Apply position
+    b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+  }
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+    const aboutText = document.getElementById('aboutText');
+    const aboutImage = document.getElementById('aboutImage');
+
+    document.addEventListener('mousemove', (e) => {
+    const { clientX: x, clientY: y } = e;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const moveX = (x - centerX) * 0.02;
+    const moveY = (y - centerY) * 0.02;
+
+    aboutText.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    aboutImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+    
+
+    
+    function formatNumber(num) {
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'm';
+    if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+    return num;
+    }
+    
+    function setupIntersectionObserver() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+        const videoId = entry.target.id.split('-')[1];
+        const video = document.getElementById(`video-${videoId}`);
+        const progress = document.getElementById(`progress-${videoId}`);
+        
+        if (entry.isIntersecting) {
+            video.play();
+            video.addEventListener('timeupdate', () => updateProgressBar(video, progress));
+            currentReelIndex = Array.from(videos).indexOf(video);
+        } else {
+            video.pause();
+            video.removeEventListener('timeupdate', () => updateProgressBar(video, progress));
+            progress.style.width = '0%';
+        }
+        });
+    }, { threshold: 0.8 });
+    
+    videos.forEach(video => observer.observe(video));
+    }
+    
+    function updateProgressBar(video, progressBar) {
+    const percent = (video.currentTime / video.duration) * 100;
+    progressBar.style.width = `${percent}%`;
+    }
+    
+    function setupScrollListener() {
+    let isScrolling = false;
+    
+    reelsContainer.addEventListener('scroll', () => {
+        if (!isScrolling) {
+        isScrolling = true;
+        const containerHeight = reelsContainer.clientHeight;
+        const scrollPosition = reelsContainer.scrollTop;
+        const newIndex = Math.round(scrollPosition / containerHeight);
+        
+        if (newIndex !== currentReelIndex) {
+            videos[currentReelIndex].pause();
+            document.getElementById(`progress-${videos[currentReelIndex].id.split('-')[1]}`).style.width = '0%';
+            currentReelIndex = newIndex;
+            videos[currentReelIndex].currentTime = 0;
+            videos[currentReelIndex].play();
+        }
+        
+        setTimeout(() => { isScrolling = false; }, 100);
+        }
+    });
+    }
+    const slider = document.getElementById('reelsSlider');
+let currentIndex = 0;
+const totalReels = slider.children.length;
+
+function scrollReels(direction) {
+    currentIndex = (currentIndex + direction + totalReels) % totalReels;
+    slider.scrollTo({
+    left: slider.offsetWidth * currentIndex,
+    behavior: 'smooth'
+    });
+}
+
+setInterval(() => {
+    scrollReels(1);
+}, 3000);
+
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const image = document.querySelector('.d_img');
+
+        image.addEventListener('mousemove', (e) => {
+            const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * 10;
+            const rotateY = ((x - centerX) / centerX) * -10;
+
+            image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.2)`;
+        });
+
+        image.addEventListener('mouseleave', () => {
+            image.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+    });
+
+        
+</script>
+</body>
+</html>
